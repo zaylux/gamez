@@ -4,7 +4,7 @@ A beautiful, responsive word puzzle game built with modern web technologies and 
 
 ## 🎮 Game Preview
 
-![Word Flow Game](image.png)
+![Word Flow Game](media/image.png)
 
 *Beautiful word puzzle interface with glassmorphic design and smooth animations*
 

@@ -1,6 +1,12 @@
 # Word Flow - Immersive Word Puzzle Game
 
-A beautiful, responsive word puzzle game built with modern web technologies and stunning animations using Anime.js and Motion.dev frameworks.]
+A beautiful, responsive word puzzle game built with modern web technologies and stunning animations using Anime.js and Motion.dev frameworks.
+
+## 🎮 Game Preview
+
+![Word Flow Game](image.png)
+
+*Beautiful word puzzle interface with glassmorphic design and smooth animations*
 
 ## Features
 

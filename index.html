@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Flow - Immersive Word Puzzle Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/motion@10.16.3/dist/motion.dev.min.js"></script>
+</head>
+<body>
+    <div class="game-container">
+        <!-- Header -->
+        <header class="game-header">
+            <div class="logo">
+                <h1 class="game-title">Word Flow</h1>
+                <p class="game-subtitle">Unscramble the letters</p>
+            </div>
+            <div class="game-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Level</span>
+                    <span class="stat-value" id="level">1</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Score</span>
+                    <span class="stat-value" id="score">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Time</span>
+                    <span class="stat-value" id="timer">2:00</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Game Area -->
+        <main class="game-main">
+            <!-- Word Display -->
+            <section class="word-display">
+                <div class="word-hint">
+                    <p class="hint-text">Category: <span id="category">Animals</span></p>
+                    <p class="hint-description" id="hint-description">Find the animal name</p>
+                </div>
+                <div class="scrambled-word" id="scrambled-word">
+                    <!-- Letters will be generated here -->
+                </div>
+            </section>
+
+            <!-- Letter Input Area -->
+            <section class="letter-input">
+                <div class="input-slots" id="input-slots">
+                    <!-- Input slots will be generated here -->
+                </div>
+                <div class="letter-bank" id="letter-bank">
+                    <!-- Available letters will be generated here -->
+                </div>
+            </section>
+
+            <!-- Action Buttons -->
+            <section class="game-actions">
+                <button class="btn btn-primary" id="submit-btn">
+                    <span class="btn-text">Submit</span>
+                    <div class="btn-glow"></div>
+                </button>
+                <button class="btn btn-secondary" id="shuffle-btn">
+                    <span class="btn-text">Shuffle</span>
+                    <div class="btn-glow"></div>
+                </button>
+                <button class="btn btn-secondary" id="hint-btn">
+                    <span class="btn-text">Hint</span>
+                    <div class="btn-glow"></div>
+                </button>
+                <button class="btn btn-secondary" id="skip-btn">
+                    <span class="btn-text">Skip</span>
+                    <div class="btn-glow"></div>
+                </button>
+            </section>
+
+            <!-- Progress Bar -->
+            <section class="progress-section">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <p class="progress-text">Word <span id="current-word">1</span> of <span id="total-words">10</span></p>
+            </section>
+        </main>
+
+        <!-- Success Modal -->
+        <div class="modal" id="success-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Excellent!</h2>
+                    <div class="success-icon">✨</div>
+                </div>
+                <div class="modal-body">
+                    <p class="success-message">You found the word!</p>
+                    <p class="correct-word" id="correct-word"></p>
+                    <div class="reward-points">
+                        <span class="points-label">Points earned:</span>
+                        <span class="points-value" id="points-earned">+100</span>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-primary" id="next-word-btn">Next Word</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Over Modal -->
+        <div class="modal" id="game-over-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Game Complete!</h2>
+                    <div class="trophy-icon">🏆</div>
+                </div>
+                <div class="modal-body">
+                    <div class="final-stats">
+                        <div class="stat-row">
+                            <span class="stat-label">Final Score:</span>
+                            <span class="stat-value" id="final-score">0</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Words Solved:</span>
+                            <span class="stat-value" id="words-solved">0</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Time Bonus:</span>
+                            <span class="stat-value" id="time-bonus">0</span>
+                        </div>
+                    </div>
+                    <div class="rating-stars" id="rating-stars">
+                        <!-- Stars will be generated here -->
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-primary" id="play-again-btn">Play Again</button>
+                    <button class="btn btn-secondary" id="share-btn">Share Score</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Screen -->
+        <div class="loading-screen" id="loading-screen">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <p class="loading-text">Loading Word Flow...</p>
+            </div>
+        </div>
+
+        <!-- Background Effects -->
+        <div class="background-effects">
+            <div class="floating-letter" style="--x: 10%; --y: 20%; --delay: 0s;">W</div>
+            <div class="floating-letter" style="--x: 80%; --y: 10%; --delay: 2s;">O</div>
+            <div class="floating-letter" style="--x: 50%; --y: 80%; --delay: 4s;">R</div>
+            <div class="floating-letter" style="--x: 20%; --y: 60%; --delay: 6s;">D</div>
+            <div class="floating-letter" style="--x: 90%; --y: 70%; --delay: 8s;">S</div>
+            <div class="particle" style="--x: 30%; --y: 30%; --delay: 1s;"></div>
+            <div class="particle" style="--x: 70%; --y: 40%; --delay: 3s;"></div>
+            <div class="particle" style="--x: 60%; --y: 90%; --delay: 5s;"></div>
+            <div class="particle" style="--x: 15%; --y: 85%; --delay: 7s;"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -2,13 +2,15 @@
 
 A beautiful, responsive word puzzle game built with modern web technologies and stunning animations using Anime.js and Motion.dev frameworks.
 
-## 📸 Screenshots
+## Screenshots
 
-### Desktop Gameplay
-![Desktop Gameplay](screenshots/gameplay.png)
+### 🎮 Game Interface
+![Word Flow Game Interface](screenshot1.png)
+*Main game interface with scrambled letters, input slots, and interactive controls*
 
-### Mobile View  
-![Mobile View](screenshots/mobile-view.png)
+### 🏆 Success Celebration
+![Word Flow Success](screenshot2.png)
+*Success modal with confetti animation and score display*
 
 ## Features
 

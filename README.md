@@ -2,6 +2,14 @@
 
 A beautiful, responsive word puzzle game built with modern web technologies and stunning animations using Anime.js and Motion.dev frameworks.
 
+## 📸 Screenshots
+
+### Desktop Gameplay
+![Desktop Gameplay](screenshots/gameplay.png)
+
+### Mobile View  
+![Mobile View](screenshots/mobile-view.png)
+
 ## Features
 
 ### 🎮 Gameplay
